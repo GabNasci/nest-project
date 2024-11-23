@@ -23,7 +23,22 @@ describe('AppController (e2e)', () => {
       .expect('Lal!');
   });
 
-  // it('POST /user - deve validar email', () => {
-  //   return request(app)
-  // })
+  it('POST /user - deve validar email', () => {
+    return request(app.getHttpServer())
+    .post('/user')
+    .send({
+      age: 25,
+      name: 'Jackson',
+      email: 'jagmail.com',
+      password: 'lalsdgdfhgsfsef'
+    })
+    .expect(400)
+    .expect({
+      message: [
+        'email must be an email', 
+      ],
+      error: 'Bad Request',
+      statusCode: 400
+    })
+  })
 });
