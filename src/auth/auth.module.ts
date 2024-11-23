@@ -3,11 +3,17 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { UserModule } from 'src/user/user.module';
+import { AppConfigService } from 'src/app-config/app-config.service';
 
 @Module({
   imports: [
-    JwtModule.register({
-      secret: 'faco-tudo-que-a-hayley-williams-mandar'
+    JwtModule.registerAsync({
+      inject: [AppConfigService],
+      useFactory: (appConfigService: AppConfigService) => {
+        return {
+          secret: appConfigService.jwtKey
+        }
+      }
     }),
     UserModule
   ],

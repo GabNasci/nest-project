@@ -26,4 +26,8 @@ export class AuthService {
             })
         }
     }
+
+    getProfile(userId: number) {
+        return this.userService.getUserById(userId)
+    }
 }

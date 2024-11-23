@@ -4,15 +4,15 @@ meta {
   seq: 5
 }
 
-post {
-  url: http://localhost:3000/user
+patch {
+  url: http://localhost:3000/user/1
   body: json
   auth: none
 }
 
 body:json {
   {
-    "name": "lilo de souza",
-    "age": 23,
+    "name": "",
+    "age": 67
   }
 }
